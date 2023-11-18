@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% for relic_weapon in relic_weapons %}
+    <a href="{% url 'relic_weapon' relic_weapon.weapon_name %}">{{ relic_weapon.weapon_name }}</a>
+{% endfor %}
+
+
+{% endblock %}

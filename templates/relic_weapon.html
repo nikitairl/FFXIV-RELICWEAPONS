@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<table>
+    <tr>
+        <th>Relic Name</th>
+        <td>{{ relic_weapon.weapon_name }}</td>
+        <td><img src="{{ relic_weapon.icon.url }}" alt="Relic Weapon Icon" style="max-width: 50px; height: auto;"></td>
+    </tr>
+    <tr>
+        <th>Relic Type</th>
+        <td>{{ relic_weapon.relic_type }}</td>
+    </tr>
+    <tr>
+        <th>Job</th>
+        <td>{{ relic_weapon.job }}</td>
+    </tr>
+    <tr>
+        <th>About</th>
+        <td>{{ relic_weapon.text | safe }}</td>
+    </tr>
+    {% for quest in relic_weapon.quest_set.all %}
+    <tr>
+
+        <th>Step {{ quest.step }}</th>
+        <td>
+
+            <h1>{{ quest.quest_name }}</h1>
+            <p><h4>{{ quest.location }}</h4></p>
+            <p>{{ quest.description | safe }}</p>
+
+        </td>
+        <td>
+            {% if quest.reward.icon %}
+                <img src="{{ quest.reward.icon.url }}" alt="Reward Icon" style="max-width: 50px; height: auto;">
+            {% endif %}
+        </td>
+
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}
