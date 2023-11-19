@@ -21,3 +21,16 @@ services:
       - POSTGRES_PASSWORD=postgres
     depends_on:
       - db
+
+  nginx:
+      build: ./nginx
+      container_name: nginx_container
+      volumes:
+        - staticfiles:/app/static/
+      ports:
+        - 8008:80
+      depends_on:
+        - web
+
+volumes:
+  staticfiles:
