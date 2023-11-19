@@ -13,6 +13,7 @@ services:
     command: python relicweapons/manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/app
+      - staticfiles:/app/static
     ports:
       - "80:8000"
     environment:
