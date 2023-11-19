@@ -5,10 +5,11 @@ from . models import RelicWeapon, Quest, Reward
 
 class RelicWeaponAdmin(admin.ModelAdmin):
     list_display = ('relic_type', 'weapon_name', 'job', 'text',)
+    save_as = True
 
 
 class QuestAdmin(admin.ModelAdmin):
-    list_display = ('quest_name', 'step', 'relic', 'location', 'reward',)
+    list_display = ('quest_name', 'step', 'location', 'reward',)
     save_as = True
 
 

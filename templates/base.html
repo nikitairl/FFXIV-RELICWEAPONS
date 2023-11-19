@@ -6,7 +6,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
+<body>
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -14,11 +14,12 @@
     <title>Document</title>
 </head>
 
-    {% block content %}
-    {% endblock %}
-    <footer>
-        <div class="footer-bottom">
-            <p>copyright &copy;{% now "Y" %} RelicWeapons. made by <a href="https://github.com/nikitairl" target="_blank">Nikita.N</a></p>
-        </div>
-    </footer>
+{% block content %}
+{% endblock %}
 </body>
+<footer class="footer">
+    <div class="footer-bottom">
+        <p>{% now "Y" %} RelicWeapons. made by <a href="https://github.com/nikitairl"
+            target="_blank">Nikita.N</a></p>
+    </div>
+</footer>

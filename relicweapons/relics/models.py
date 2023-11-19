@@ -18,7 +18,7 @@ class RelicWeapon(models.Model):
 
 
 class Quest(models.Model):
-    relic = models.ForeignKey(RelicWeapon, on_delete=models.CASCADE)
+    relic = models.ManyToManyField("relics.RelicWeapon")
     step = models.IntegerField()
     quest_name = models.CharField(max_length=100)
     description = HTMLField()

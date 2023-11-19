@@ -23,7 +23,7 @@
     {% for quest in relic_weapon.quest_set.all %}
     <tr>
 
-        <th>Step {{ quest.step }}</th>
+        <th>{% if quest.step == 8 %}Final Step{% else %}Step {{ quest.step }}{% endif %}</th>
         <td>
 
             <h1>{{ quest.quest_name }}</h1>
