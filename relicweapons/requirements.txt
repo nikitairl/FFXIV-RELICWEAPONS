@@ -7,3 +7,4 @@ tzdata==2023.3
 psycopg2-binary
 psycopg2>=2.8
 python-dotenv
+gunicorn
