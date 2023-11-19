@@ -18,6 +18,7 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost',
     '194.31.174.117',
+    'relicweapons.com',
 ]
 
 # SECURITY WARNING: don't run with debug turned on in production!
