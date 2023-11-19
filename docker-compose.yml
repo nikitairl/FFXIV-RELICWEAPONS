@@ -13,7 +13,8 @@ services:
     command: python relicweapons/manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/app
-      - staticfiles:/app/static
+      - static:/static
+      - media:/media
     ports:
       - "80:8000"
     environment:
@@ -27,11 +28,13 @@ services:
       build: ./nginx
       container_name: nginx_container
       volumes:
-        - staticfiles:/app/static/
+      - static:/app/static
+      - media:/app/media
       ports:
         - 8008:80
       depends_on:
         - web
 
 volumes:
-  staticfiles:
+  static:
+  media:
