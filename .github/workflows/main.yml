@@ -55,4 +55,6 @@ jobs:
               git fetch --all
               git branch backup-master
               git reset --hard origin/master
-              docker-compose up --build -d
+              docker-compose -f docker-compose.prod.yml down -v
+              docker-compose -f docker-compose.prod.yml up -d --build
+              docker-compose -f docker-compose.prod.yml exec web python manage.py migrate --noinput

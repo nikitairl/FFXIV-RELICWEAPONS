@@ -1,0 +1,63 @@
+###########
+# BUILDER #
+###########
+
+FROM python:3.8.6-alpine as builder
+
+WORKDIR /usr/src/relicweapons
+
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+
+# установка зависимостей
+RUN apk update \
+    && apk add postgresql-dev gcc python3-dev musl-dev
+RUN pip install --upgrade pip
+
+# проверка кода через линтер
+RUN pip install flake8
+COPY . .
+RUN flake8 --ignore=E501,F401 /usr/src/relicweapons/relicweapons
+
+# установка зависимостей
+COPY ./requirements.txt .
+RUN pip wheel --no-cache-dir --no-deps --wheel-dir /usr/src/relicweapons/wheels -r requirements.txt
+
+
+#########
+# FINAL #
+#########
+
+FROM python:3.8.6-alpine
+
+# создаем директорию для пользователя
+RUN mkdir -p /home/relicweapons
+
+# создаем отдельного пользователя
+RUN addgroup -S relicweapons && adduser -S relicweapons -G relicweapons
+
+# создание каталога для приложения
+ENV HOME=/home/relicweapons
+ENV APP_HOME=/home/relicweapons/web
+RUN mkdir $APP_HOME
+WORKDIR $APP_HOME
+
+# установка зависимостей и копирование из builder
+RUN apk update && apk add libpq
+COPY --from=builder /usr/src/relicweapons/wheels /wheels
+COPY --from=builder /usr/src/relicweapons/requirements.txt .
+RUN pip install --no-cache /wheels/*
+
+# копирование entrypoint-prod.sh
+COPY ./entrypoint.prod.sh $APP_HOME
+
+# копирование проекта Django
+COPY . $APP_HOME
+
+# изменение прав для пользователя relicweapons
+RUN chown -R relicweapons:relicweapons $APP_HOME
+
+# изменение рабочего пользователя
+USER relicweapons
+
+ENTRYPOINT ["/home/relicweapons/web/entrypoint.prod.sh"]
