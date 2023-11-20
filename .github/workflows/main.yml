@@ -52,5 +52,7 @@ jobs:
             password: ${{ secrets.PASSWORD }}
             script: |
               cd FFXIV-RELICWEAPONS/
-              git pull origin master
+              git fetch --all
+              git branch backup-master
+              git reset --hard origin/master
               docker-compose up --build -d
