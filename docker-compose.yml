@@ -28,8 +28,8 @@ services:
       build: ./nginx
       container_name: nginx_container
       volumes:
-      - static:/app/static
-      - media:/app/media
+      - static:/static
+      - media:/media
       ports:
         - 8008:80
       depends_on:
