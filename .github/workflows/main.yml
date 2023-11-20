@@ -53,5 +53,4 @@ jobs:
             script: |
               cd FFXIV-RELICWEAPONS/
               git pull origin master
-              cd relicweapons
               docker-compose up --build -d

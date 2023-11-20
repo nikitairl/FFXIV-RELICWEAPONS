@@ -1,33 +1,20 @@
-FROM python:3.10.9-alpine3.17
+FROM python:3.8.6-alpine
 
+# рабочая директория внутри проекта
+WORKDIR /usr/src/relicweapons
 
-#set work directory
-RUN mkdir /app
-WORKDIR /app
-
-#set environment variable
-ENV PYTHONDONTWRITEBYCODE 1
+# переменные окружения для python
+ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-#install pyscopg2 dependencies
-RUN apk update && apk add postgresql-dev gcc python3-dev musl-dev linux-headers
+# Устанавливаем зависимости для Postgre
+RUN apk update \
+    && apk add postgresql-dev gcc python3-dev musl-dev
 
-#install dependencies
+# устанавливаем зависимости
 RUN pip install --upgrade pip
 COPY ./requirements.txt .
 RUN pip install -r requirements.txt
 
-#media files
-RUN mkdir -p /media
-RUN mkdir -p /static
-
-# copy entrypoint.sh
-COPY ./entrypoint.sh .
-RUN sed -i 's/\r$//g' /app/entrypoint.sh
-RUN chmod +x /app/entrypoint.sh
-
-# copy project
+# копируем содержимое текущей папки в контейнер
 COPY . .
-
-# run entrypoint.sh
-ENTRYPOINT ["/app/entrypoint.sh"]
