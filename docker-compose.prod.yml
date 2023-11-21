@@ -11,6 +11,9 @@ services:
     # Открываем порт 8000 внутри и снаружи
     expose:
       - 8000
+    volumes:
+      - static_volume:/home/relicweapons/web/static
+      - media_volume:/home/relicweapons/web/media
     env_file:
       - ./.env.dev
     # Дожидаемся запуска db
@@ -26,6 +29,9 @@ services:
       - ./.env.db
   nginx:
     build: ./nginx
+    volumes:
+      - static_volume:/home/relicweapons/web/static
+      - media_volume:/home/relicweapons/web/media
     ports:
       - 1337:80
     depends_on:
@@ -33,3 +39,5 @@ services:
 
 volumes:
   postgres_volume:
+  static_volume:
+  media_volume:
