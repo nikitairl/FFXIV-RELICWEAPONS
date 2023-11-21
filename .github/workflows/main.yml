@@ -24,6 +24,7 @@ jobs:
     compose:
       name: Composing new docker
       runs-on: ubuntu-latest
+      needs: fetch_new_code
       steps:
         - name: executing compose
           uses: appleboy/ssh-action@master
