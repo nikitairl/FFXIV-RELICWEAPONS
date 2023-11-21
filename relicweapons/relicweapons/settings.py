@@ -8,7 +8,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
-DEBUG = int(os.environ.get('DEBUG', default=1))
+DEBUG = False
 
 ALLOWED_HOSTS = [
     '127.0.0.1',
@@ -21,7 +21,7 @@ ALLOWED_HOSTS = [
 CSRF_TRUSTED_ORIGINS = ['https://relicweapons.com', 'http://relicweapons.com']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
