@@ -9,18 +9,10 @@ def relic_weapon(request, relic_name):
         weapon_name=relic_name
     )
     context = {'relic_weapon': relic_weapon}
-
-    response = render(request, 'relic_weapon.html', context)
-    response['Cache-Control'] = 'no-cache, no-store, must-revalidate'
-
-    return response
+    return render(request, 'relic_weapon.html', context)
 
 
 def index(request):
     relic_weapons = RelicWeapon.objects.all()
     context = {'relic_weapons': relic_weapons}
-
-    response = render(request, 'index.html', context)
-    response['Cache-Control'] = 'no-cache, no-store, must-revalidate'
-
-    return response
+    return render(request, 'index.html', context)
