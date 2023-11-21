@@ -19,6 +19,8 @@ ALLOWED_HOSTS = [
     'relicweapons.com',
 ]
 
+CSRF_TRUSTED_ORIGINS = ['https://relicweapons.com']
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 INSTALLED_APPS = [
