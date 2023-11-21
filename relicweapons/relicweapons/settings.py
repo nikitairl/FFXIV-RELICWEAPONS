@@ -21,7 +21,9 @@ ALLOWED_HOSTS = [
 CSRF_TRUSTED_ORIGINS = ['https://relicweapons.com',
                         'http://relicweapons.com',
                         'https://relicweapons.com/'
-                        'http://relicweapons.com/',]
+                        'http://relicweapons.com/',
+                        'https://*.relicweapons.com',
+                        'http://*.relicweapons.com',]
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
