@@ -35,7 +35,7 @@ jobs:
             script: |
               cd FFXIV-RELICWEAPONS/
               docker-compose -f docker-compose.prod.yml down -v
-              docker-compose -f docker-compose.prod.yml up -d
+              docker-compose -f docker-compose.prod.yml up -d --build
     # compose2:
     #   name: migrate etc
     #   runs-on: ubuntu-latest
