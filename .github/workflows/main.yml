@@ -33,6 +33,7 @@ jobs:
             username: ${{ secrets.USER }}
             password: ${{ secrets.PASSWORD }}
             script: |
+              export TTY=false
               cd FFXIV-RELICWEAPONS/
               docker-compose -f docker-compose.prod.yml exec web python manage.py dumpdata --natural-foreign --exclude=auth.permission --exclude=contenttypes --indent=4 > backup.json
     compose1:
