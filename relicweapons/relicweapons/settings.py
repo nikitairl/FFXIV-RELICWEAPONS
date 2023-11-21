@@ -10,13 +10,12 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 DEBUG = int(os.environ.get('DEBUG', default=1))
 
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(' ')
-
 ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost',
     '194.31.174.117',
     'relicweapons.com',
+    'wwww.relicweapons.com'
 ]
 
 CSRF_TRUSTED_ORIGINS = ['https://relicweapons.com', 'http://relicweapons.com']
