@@ -21,25 +21,10 @@ jobs:
               git fetch --all
               git branch backup-master
               git reset --hard origin/master
-    dump_data:
-      name: Dumping data
-      runs-on: ubuntu-latest
-      needs: fetch_new_code
-      steps:
-        - name: executing dump
-          uses: appleboy/ssh-action@master
-          with:
-            host: ${{ secrets.HOST }}
-            username: ${{ secrets.USER }}
-            password: ${{ secrets.PASSWORD }}
-            script: |
-              export TTY=false
-              cd FFXIV-RELICWEAPONS/
-              docker-compose -f docker-compose.prod.yml exec web python manage.py dumpdata --natural-foreign --exclude=auth.permission --exclude=contenttypes --indent=4 > backup.json
     compose1:
       name: Composing new docker
       runs-on: ubuntu-latest
-      needs: dump_data
+      needs: fetch_new_code
       steps:
         - name: executing compose
           uses: appleboy/ssh-action@master
@@ -51,19 +36,19 @@ jobs:
               cd FFXIV-RELICWEAPONS/
               docker-compose -f docker-compose.prod.yml down
               docker-compose -f docker-compose.prod.yml up -d --build
-    compose2:
-      name: migrate etc
-      runs-on: ubuntu-latest
-      needs: compose1
-      steps:
-        - name: executing compose
-          uses: appleboy/ssh-action@master
-          with:
-            host: ${{ secrets.HOST }}
-            username: ${{ secrets.USER }}
-            password: ${{ secrets.PASSWORD }}
-            script: |
-              cd FFXIV-RELICWEAPONS/
-              docker-compose -f docker-compose.prod.yml exec web python manage.py migrate --noinput
-              docker-compose -f docker-compose.prod.yml exec web python manage.py loaddata data.json
-              docker-compose -f docker-compose.prod.yml exec web python manage.py collectstatic --noinput
+    # compose2:
+    #   name: migrate etc
+    #   runs-on: ubuntu-latest
+    #   needs: compose1
+    #   steps:
+    #     - name: executing compose
+    #       uses: appleboy/ssh-action@master
+    #       with:
+    #         host: ${{ secrets.HOST }}
+    #         username: ${{ secrets.USER }}
+    #         password: ${{ secrets.PASSWORD }}
+    #         script: |
+    #           cd FFXIV-RELICWEAPONS/
+    #           docker-compose -f docker-compose.prod.yml exec web python manage.py migrate --noinput
+    #           docker-compose -f docker-compose.prod.yml exec web python manage.py loaddata data.json
+    #           docker-compose -f docker-compose.prod.yml exec web python manage.py collectstatic --noinput
