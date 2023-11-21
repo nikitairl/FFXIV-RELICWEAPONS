@@ -34,7 +34,8 @@ jobs:
             password: ${{ secrets.PASSWORD }}
             script: |
               cd FFXIV-RELICWEAPONS/
-              docker-compose -f docker-compose.prod.yml down -v
+              docker-compose -f docker-compose.prod.yml exec web python manage.py dumpdata --natural-foreign --exclude=auth.permission --exclude=contenttypes --indent=4 > backup.json
+              docker-compose -f docker-compose.prod.yml down
               docker-compose -f docker-compose.prod.yml up -d --build
     # compose2:
     #   name: migrate etc
