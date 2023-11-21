@@ -19,7 +19,7 @@ ALLOWED_HOSTS = [
     'relicweapons.com',
 ]
 
-CSRF_TRUSTED_ORIGINS = ['https://relicweapons.com']
+CSRF_TRUSTED_ORIGINS = ['https://relicweapons.com', 'http://relicweapons.com']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
