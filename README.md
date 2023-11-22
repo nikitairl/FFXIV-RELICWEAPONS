@@ -1,7 +1,7 @@
 # FFXIV-RELICWEAPONS
 # How to get a Zodiac Weapon for every job in FFXIV using Django, Docker, Nginx, Gunicorn and Postgres
 
-## [relicweapons.com](http://relicweapons.com/) - the site should work, but may be abandoned
+## [relicweapons.com](https://relicweapons.com/) - the site should work, but may be abandoned
 
 
 
