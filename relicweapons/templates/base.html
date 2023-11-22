@@ -1,5 +1,5 @@
 {% load static %}
-<link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.ico' %}"/>
+<link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.ico' %}" />
 <!DOCTYPE html>
 <html lang="en">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
@@ -10,19 +10,39 @@
 
 
 <head>
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function (m, e, t, r, i, k, a) {
+            m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments) };
+            m[i].l = 1 * new Date();
+            for (var j = 0; j < document.scripts.length; j++) { if (document.scripts[j].src === r) { return; } }
+            k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+        })
+            (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+        ym(95648012, "init", {
+            clickmap: true,
+            trackLinks: true,
+            accurateTrackBounce: true
+        });
+    </script>
+    <noscript>
+        <div><img src="https://mc.yandex.ru/watch/95648012" style="position:absolute; left:-9999px;" alt="" /></div>
+    </noscript>
+    <!-- /Yandex.Metrika counter -->
     <meta charset="UTF-8" />
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>RWeapons</title>
 </head>
+
 <body>
-{% block content %}
-{% endblock %}
+    {% block content %}
+    {% endblock %}
 </body>
 <footer class="footer">
     <div class="footer-bottom">
-        <p>{% now "Y" %} RelicWeapons. made by <a href="https://github.com/nikitairl"
-            target="_blank">Nikita.N</a></p>
+        <p>{% now "Y" %} RelicWeapons. made by <a href="https://github.com/nikitairl" target="_blank">Nikita.N</a></p>
     </div>
 </footer>
