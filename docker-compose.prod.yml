@@ -33,7 +33,7 @@ services:
       - static_volume:/home/relicweapons/web/static
       - media_volume:/home/relicweapons/web/media
     ports:
-      - 80:80
+      - 443:80
     depends_on:
       - web
 
