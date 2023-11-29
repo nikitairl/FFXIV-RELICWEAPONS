@@ -19,6 +19,11 @@ services:
     # Дожидаемся запуска db
     depends_on:
       - db
+    ports:
+      - 8000:8000
+    networks:
+      - webnet
+
   db:
     # Образ и версия базы, которую мы будем использовать
     image: postgres:12.0-alpine
@@ -27,6 +32,9 @@ services:
       - postgres_volume:/var/lib/postgresql/data/
     env_file:
       - ./.env.db
+    networks:
+      - webnet
+
   nginx:
     build: ./nginx
     volumes:
@@ -37,8 +45,13 @@ services:
       - 443:443
     depends_on:
       - web
+    networks:
+      - webnet
 
 volumes:
   postgres_volume:
   static_volume:
   media_volume:
+
+networks:
+  webnet:
