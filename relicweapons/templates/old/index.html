@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<div class="container">
+    <div class="row">
+        <div class="col-md-6" style="text-align: center">
+            <h2>Relic Weapons</h2>
+            {% regroup relic_weapons by job as job_groups %}
+            {% for job_group in job_groups %}
+                <div class="job-group job-{{ job_group.grouper|lower|slugify }}">
+                    <h2>{{ job_group.grouper }}</h2>
+                    <ul class="relic-weapons">
+                        {% for relic_weapon in job_group.list %}
+                            <li><a href="{% url 'relic_weapon' relic_weapon.weapon_name %}">{{ relic_weapon.weapon_name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

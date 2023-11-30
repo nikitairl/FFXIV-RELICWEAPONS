@@ -1,4 +1,15 @@
-html, body {
+:root {
+    --color-one: #34d1d1;
+    --color-two: #2f2235;
+    --color-three: #3f3244;
+    --color-four: #f2f2f2;
+    --color-five: #d1d2d3;
+    --color-six: #666666;
+    --color-seven: #000000;
+    --color-eight: #ffffff;
+  }
+
+  html, body {
     color: #392300;
     background-color: rgb(254, 254, 254);
     min-height: 98vh;
@@ -6,136 +17,173 @@ html, body {
     flex-direction: column;
 }
 
-table {
+  .accordion {
+    display: flex;
+    flex-wrap: wrap;
+    height: auto;
     width: 100%;
-    border-collapse: collapse;
-    font-family: Arial, sans-serif;
-    margin: 0 auto;
-    max-width: 600px;
-    table-layout: auto;
-}
+  }
 
-h1 {
-    font-size: 18px;
+  .accordion__content {
+    order: 1;
+    flex-grow: 1;
+    width: 100%;
+    height: 100%;
+    display: none;
+  }
+
+  .accordion__label {
+    display: block;
+    cursor: pointer;
+    flex-grow: 1;
     text-align: center;
-    padding: 18px;
-}
+    padding: 1% 5% 1% 5%;
+    background-color: var(--color-four);
+    margin-right: 1px;
+    border-bottom: 1px solid var(--color-five);
+  }
 
-h3 {
-    font-size: 18px;
-    padding: 18px;
-    padding-bottom: 9px;
-    text-align: center;
-    margin-top: 16px;
-}
+  .accordion__radio {
+    display: none;
+  }
 
-h4 {
-    font-size: 16px;
-    text-align: center;
-    margin: 0px;
-    margin-top: 16px;
+  .accordion input[type="radio"] {
+    display: none;
+  }
 
-}
+  .accordion input[type="radio"] + label {
+    color: var(--color-six);
+    z-index: 1;
+  }
 
-a, a:visited {
-    text-decoration: none;
-    color: #287ee4;
-   }
+  .accordion input[type="radio"]:checked + label {
+    background-color: white;
+    font-weight: 600;
+    border-top: 1px solid var(--color-five);
+    border-left: 1px solid var(--color-five);
+    border-right: 1px solid var(--color-five);
+    border-bottom: none;
+  }
+  .accordion input[type="radio"]:checked + label + .accordion__content {
+    display: flex;
+    margin-right: 0;
+    border-left: 1px solid var(--color-five);
+    border-right: 1px solid var(--color-five);
+    border-bottom: 1px solid var(--color-five);
+  }
 
-th,
-td {
-    padding: 8px;
-    padding-top : 18px;
-    padding-bottom: 18px;
-    text-align: left;
-    border: 1px solid #ddd;
-    border-bottom: 3px solid #ddd;
-    vertical-align: top;
-    max-width: 800px;
-}
+  .accordion__content__image__container {
+    width: 40%;
+    height: auto;
+    margin-right: 10px;
+  }
 
-p {
-    margin: 8px;
-}
-th {
-    background-color: #f2f2f2;
-    padding-top : 18px;
-    padding-bottom: 18px;
-}
+  .accordion__content__image {
+    max-width: 100%;
+    max-height: 88%;
+    margin: 3%;
+    background-color: white;
+    object-position: top;
+  }
 
-tr:hover {
-    background-color: rgba(255, 255, 255, 0.882);
-}
+  .accordion__content__text {
+    width: 75%;
+    margin-top: 1%;
+    margin-left: 40px;
+  }
 
-li {
-    margin-bottom: 8px;
-}
+  .accordion__content__text__title {
+    margin-top: 3%;
+  }
 
-.job-group {
-    margin-bottom: 20px;
-}
+  .accordion__content__text__horizontal-line {
+    border: none;
+    border-bottom: 1px solid var(--color-five);
+    margin-right: 2%;
+  }
 
-.job-group h2 {
-    font-size: 20px;
-    color: #333;
-    margin-bottom: 10px;
-}
+  .accordion__content__text__body {
+    margin-top: 2%;
+    padding-right: 5%;
+  }
 
-.job-group.job-WAR h2 {
-    color: #394b6c;
-}
+  @media (max-width: 900px) {
+    .accordion {
+      border: 1px solid var(--color-five);
+    }
 
-.job-group.job-PLD h2 {
-    color: #394b6c;
-}
+    .accordion-tab--status {
+      display: inline;
+    }
+    .accordion__content,
+    .accordion__label {
+      order: initial;
+    }
 
-.job-group.job-SCH h2 {
-    color: rgb(4, 94, 4);
-}
+    .accordion__content {
+      flex-direction: column;
+    }
 
-.job-group.job-WHM h2 {
-    color: rgb(4, 94, 4);
-}
+    .accordion__label {
+      width: 100%;
+      margin-right: 0;
+      margin-bottom: 1px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 1.2em;
+      padding: 5% 6% 5% 6%;
+    }
 
-.job-group.job-MNK h2 {
-    color: #601c15;
-}
+    .accordion__label:last-child {
+      background-color: magenta;
+    }
 
-.job-group.job-BRD h2 {
-    color: #601c15;
-}
+    .accordion__content__image__container {
+      width: 100%;
+    }
 
-.job-group.job-DRG h2 {
-    color: #601c15;
-}
+    .accordion__content__image {
+      padding: 0;
+      margin: 0;
+      object-fit: cover;
+      height: 300px;
+      width: 100%;
+    }
 
-.job-group.job-NIN h2 {
-    color: #601c15;
-}
+    .accordion__content__text {
+      font-size: 0.9em;
+      margin: 4% 5% 4% 5%;
+    }
 
-.job-group.job-SMN h2 {
-    color: #601c15;
-}
+    .accordion__content__text__title {
+      margin: 2% 0 2% 0;
+    }
 
-.job-group.job-BLM h2 {
-    color: #601c15;
-}
+    .accordion__content__text__horizontal-line {
+      width: 100%;
+    }
 
-.relic-weapons {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
+    .accordion input[type="radio"] + label span:after {
+      content: "+";
+    }
 
-.relic-weapons li {
-    margin-bottom: 5px;
-}
+    .accordion input[type="radio"]:checked + label span:after {
+      content: "—";
+    }
 
-.relic-weapons li a {
-    text-decoration: none;
-    color: #007bff;
-    font-weight: bold;
-}
+    .accordion input[type="radio"]:checked + label {
+      border: none;
+    }
+
+    .accordion input[type="radio"]:checked + label + .accordion {
+      border: none;
+    }
+
+    .accordion input[type="radio"]:checked + label + .accordion__content {
+      display: contents;
+    }
+  }
+
 
 footer{
     margin-top: auto;
@@ -144,10 +192,4 @@ footer{
 .footer p {
     margin: 8px;
     text-align: center;
-}
-
-@media (max-width: 600px) {
-    table {
-        max-width: 100%;
-    }
 }
