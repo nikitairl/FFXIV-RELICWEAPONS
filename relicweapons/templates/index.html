@@ -20,8 +20,10 @@
                 <hr class="accordion__content__text__horizontal-line" />
             </h3>
             <p class="accordion__content__text__body">
-                {% for relic_weapon in job_group.list %}
-                <li><a href="{% url 'relic_weapon' relic_weapon.weapon_name %}">{{ relic_weapon.weapon_name }}</a></li>
+                {% for relic_weapon in relic_weapons %}
+                    {% if relic_weapon.job == job_group.grouper %}
+                        <li><a href="{% url 'relic_weapon' relic_weapon.weapon_name %}">{{ relic_weapon.weapon_name }}</a></li>
+                    {% endif %}
                 {% endfor %}
             </p>
         </div>

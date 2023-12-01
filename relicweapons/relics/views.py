@@ -13,6 +13,6 @@ def relic_weapon(request, relic_name):
 
 
 def index(request):
-    relic_weapons = RelicWeapon.objects.all()
+    relic_weapons = RelicWeapon.objects.get_queryset().order_by('job')
     context = {'relic_weapons': relic_weapons}
     return render(request, 'index.html', context)
